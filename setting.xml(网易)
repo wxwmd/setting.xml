@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <localRepository>${user.home}/.m2/repository</localRepository>
+  
+    <pluginGroups/>
+    <proxies/>
+
+
+    <servers>
+        <server>
+            <id>releases</id>
+            <username>deployment</username>
+            <password>He2019</password>
+        </server>
+        <server>
+            <id>snapshots</id>
+            <username>deployment</username>
+            <password>He2019</password>
+        </server>
+    </servers>
+    
+    <mirrors>
+        <mirror>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <!-- https://maven.aliyun.com/repository/public/ -->
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+    </mirrors>
+
+
+    <profiles>
+        <profile>
+            <id>jdk1.8</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <jdk>1.8</jdk>
+            </activation>
+            <properties>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+                <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+            </properties>
+        </profile>
+
+        
+        <profile>
+            <id>dev</id>
+            <repositories>
+              <repository>
+                <id>nexus-163</id>
+                <name>Nexus 163</name>
+                <url>http://mirrors.163.com/maven/repository/maven-public/</url>
+                <layout>default</layout>
+                <snapshots>
+                  <enabled>false</enabled>
+                </snapshots>
+                <releases>
+                  <enabled>true</enabled>
+                </releases>
+              </repository>
+            </repositories>
+            <pluginRepositories>
+              <pluginRepository>
+                <id>nexus-163</id>
+                <name>Nexus 163</name>
+                <url>http://mirrors.163.com/maven/repository/maven-public/</url>
+                <snapshots>
+                  <enabled>false</enabled>
+                </snapshots>
+                <releases>
+                  <enabled>true</enabled>
+                </releases>
+              </pluginRepository>
+            </pluginRepositories>
+        </profile>
+
+        <profile>
+            <id>ali</id>
+            <repositories>
+                <repository>
+                    <id>alimaven</id>
+                    <name>aliyun maven</name>
+                    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>alimaven</id>
+                    <name>aliyun maven</name>
+                    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>jdk1.8</activeProfile>
+        <activeProfile>dev</activeProfile>
+        <activeProfile>ali</activeProfile>
+    </activeProfiles>
+</settings>
